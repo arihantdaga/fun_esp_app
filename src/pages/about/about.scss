@@ -1,3 +1,30 @@
 page-about {
-
+.robot-joystick{
+        button{
+                width: 85px;
+                height:42px;
+        }
+}
+.conn_state_icon{
+        width:20px;
+        // display:inline-block;
+        font-size:18px;
+        float: right;
+        padding-top:10px;
+}
+.section-heading{
+        margin-top: 20px;
+        padding-bottom: 10px;
+        /* border-bottom: 1px solid #ccc; */
+        font-weight: bold;
+        font-size: 18px;
+        padding-top: 10px;
+        border-top: 1px solid #ddd;
+        &.no-top-border{
+                border-top:0px none;
+        }
+        &.no-top-margin{
+                margin-top:0px;
+        }
+}
 }

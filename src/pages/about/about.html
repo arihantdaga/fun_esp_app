@@ -1,11 +1,145 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color="primary">
     <ion-title>
-      About
+      S-BOT
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
+    <ion-row>
+        <ion-col>
+          <div class="section-heading no-top-border no-top-margin" text-left>
+            Robot Address
+          </div>
+        </ion-col>
+    </ion-row>
+  <ion-row>
+    
+      <ion-col col-9>
+      <ion-item no-padding>
+      <ion-input [(ngModel)]="ip" placeholder="Device Address"></ion-input>
+      </ion-item>
+      </ion-col>
+      <ion-col col-3 text-right class="">
+          <button icon-only success ion-button class="refresh-btn" (click)="reinitConnection()">
+              <ion-icon name="ios-refresh-circle-outline"></ion-icon> 
+          </button>
+          <span class="conn_state_icon">
+          <ion-icon name="ios-checkmark-outline" *ngIf="connection_state == 'CONNECTED'"></ion-icon>
+          <ion-icon name="ios-code-download-outline" *ngIf="connection_state == 'CONNECTING'"></ion-icon>
+          <ion-icon secondary name="ios-close-outline" *ngIf="connection_state == 'NOT_CONNECTED'"></ion-icon>
+          </span>
+      </ion-col>
+  </ion-row>
+  <ion-grid text-center class="robot-joystick">
+      <ion-row>
+          <ion-col>
+            <div class="section-heading no-top-border" text-left>
+              Car Joystick
+            </div>
+          </ion-col>
+      </ion-row>
 
+    <ion-row >
+      <ion-col >
+        <button ion-button outline (touchstart)="touchstart($event, 1)" (touchend)="touchend($event, 1)">Forward</button>
+      </ion-col>
+    </ion-row>
+    <ion-row margin-top margin-bottom>
+      <ion-col>
+        <button ion-button outline (touchstart)="touchstart($event, 2)" (touchend)="touchend($event, 1)">Left</button>
+      </ion-col>
+      <ion-col>
+        <button ion-button outline (touchstart)="touchstart($event, 3)" (touchend)="touchend($event, 1)" color="danger">Stop</button>
+      </ion-col>
+      <ion-col>
+        <button ion-button outline (touchstart)="touchstart($event, 4)" (touchend)="touchend($event, 1)" >Right</button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <button ion-button outline (touchstart)="touchstart($event, 5)" (touchend)="touchend($event, 1)" >Back</button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-row>
+      <ion-col>
+        <div class="section-heading">
+          Actions
+        </div>
+      </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col>
+      <button ion-button (click)="sendAction('follow_line')">
+        Follow Line
+      </button>
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+      <ion-col>
+        <div class="section-heading">
+          Name Setting
+        </div>
+      </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col col-7>
+      <ion-item no-padding>
+      <ion-label stacked class="sub-heading">
+        Whats your name
+      </ion-label>
+      <ion-input [(ngModel)]="name"></ion-input>
+      </ion-item>
+    </ion-col>
+    <ion-col col-5>
+      <button ion-button  (click)="sendName()">
+        <ion-icon name="ios-cloud-upload-outline"></ion-icon> Send Name
+      </button>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col>
+      <div class="section-heading">
+        LED
+      </div>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col col-9>
+      <!-- <ion-item>
+          <input [(ngModel)]="color_r"/>
+          <input [(ngModel)]="color_g"/>
+          <input [(ngModel)]="color_b"/>
+      </ion-item> -->
+      <ion-item no-padding>
+        <ion-label>
+            Set Color
+        </ion-label>
+      
+      <ion-select #ColorSelector [(ngModel)]="selectedColor" (ionChange)="setColor(ColorSelector.value)">
+          <ion-option *ngFor="let color of color_keys" [value]="color">{{color}}</ion-option>
+      </ion-select>
+    </ion-item>
+
+    </ion-col>
+    <ion-col col-3 text-right>
+        <button icon-only ion-button (click)="led_on_off(led_on)">
+          <ion-icon name="ios-bulb-outline" *ngIf="!led_on"></ion-icon>
+          <ion-icon name="ios-bulb" *ngIf="led_on"></ion-icon>
+        </button>
+      </ion-col>
+    <!-- <ion-col text-right>
+      <button ion-button (click)="setColor()"> Set Color</button>
+    </ion-col> -->
+  </ion-row>
+  <ion-row>
+      
+  </ion-row>
+
+
+  
 </ion-content>
